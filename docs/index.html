@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <title>Dost Muhammad & Co.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
       body {
         margin: 0;
@@ -42,7 +45,7 @@
         overflow: hidden;
         background-size: cover;
         background-position: center;
-        background-image: url('images/hero-1.jpg');
+        background-image: url("images/hero-1.jpg");
       }
 
       .hero h1 {
@@ -124,7 +127,7 @@
       }
 
       .content h2:after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -198,8 +201,12 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       .careers-grid {
@@ -259,11 +266,13 @@
         padding: 25px;
       }
 
-      .responsibilities, .requirements {
+      .responsibilities,
+      .requirements {
         margin-bottom: 25px;
       }
 
-      .responsibilities h4, .requirements h4 {
+      .responsibilities h4,
+      .requirements h4 {
         color: #2c3e50;
         font-size: 18px;
         margin-bottom: 15px;
@@ -427,24 +436,58 @@
       }
 
       .footer {
-        text-align: center;
-        padding: 20px;
-        background: #222;
-        color: #fff;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 2rem 0;
+        margin-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
-      .footer .social-links a {
-        color: #fff;
-        margin: 0 10px;
-        font-size: 20px;
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .copyright {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #ecf0f1;
         text-decoration: none;
+        font-size: 0.9rem;
         transition: color 0.3s ease;
       }
 
-      .footer .social-links a:hover {
+      .social-link:hover {
         color: #3498db;
       }
 
+      .social-link svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      @media (min-width: 768px) {
+        .footer-content {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
       @media (max-width: 768px) {
         .hero h1 {
           font-size: 32px;
@@ -473,13 +516,17 @@
   <body>
     <!-- Company Name / Header -->
     <div class="navbar">
-      <a href="#" style="text-decoration: none; color: inherit">Dost Muhammad & Co.</a>
+      <a href="#" style="text-decoration: none; color: inherit"
+        >Dost Muhammad & Co.</a
+      >
     </div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="overlay"></div>
-      <h1>Your Trusted Partner for<br />Smart Homes, Livestock, Water & Auto Parts</h1>
+      <h1>
+        Your Trusted Partner for<br />Smart Homes, Livestock, Water & Auto Parts
+      </h1>
     </section>
 
     <!-- Services Section -->
@@ -583,7 +630,9 @@
                       <li>Conduct regular water quality tests and analysis</li>
                       <li>Monitor purification processes and equipment</li>
                       <li>Maintain accurate records of water quality data</li>
-                      <li>Ensure compliance with health and safety standards</li>
+                      <li>
+                        Ensure compliance with health and safety standards
+                      </li>
                     </ul>
                   </div>
                   <div class="requirements">
@@ -599,7 +648,7 @@
                   <a href="#contact" class="apply-btn">Apply Now</a>
                 </div>
               </div>
-              
+
               <div class="career-card">
                 <div class="career-header">
                   <h3><i class="fas fa-truck"></i> Distribution Manager</h3>
@@ -634,7 +683,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Auto Parts Positions -->
           <div id="auto-positions" class="department-positions">
             <div class="careers-grid">
@@ -651,7 +700,9 @@
                   <div class="responsibilities">
                     <h4>Responsibilities:</h4>
                     <ul>
-                      <li>Assist customers in identifying correct auto parts</li>
+                      <li>
+                        Assist customers in identifying correct auto parts
+                      </li>
                       <li>Maintain inventory and stock levels</li>
                       <li>Process orders and shipments</li>
                       <li>Provide technical product information</li>
@@ -670,7 +721,7 @@
                   <a href="#contact" class="apply-btn">Apply Now</a>
                 </div>
               </div>
-              
+
               <div class="career-card">
                 <div class="career-header">
                   <h3><i class="fas fa-warehouse"></i> Inventory Controller</h3>
@@ -705,7 +756,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Livestock Positions -->
           <div id="livestock-positions" class="department-positions">
             <div class="careers-grid">
@@ -713,7 +764,9 @@
                 <div class="career-header">
                   <h3><i class="fas fa-horse"></i> Livestock Manager</h3>
                   <div class="career-meta">
-                    <span><i class="fas fa-map-marker-alt"></i> Rural Areas</span>
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i> Rural Areas</span
+                    >
                     <span><i class="fas fa-briefcase"></i> Full-time</span>
                     <span><i class="fas fa-clock"></i> 5+ years</span>
                   </div>
@@ -741,12 +794,17 @@
                   <a href="#contact" class="apply-btn">Apply Now</a>
                 </div>
               </div>
-              
+
               <div class="career-card">
                 <div class="career-header">
-                  <h3><i class="fas fa-syringe"></i> Animal Health Technician</h3>
+                  <h3>
+                    <i class="fas fa-syringe"></i> Animal Health Technician
+                  </h3>
                   <div class="career-meta">
-                    <span><i class="fas fa-map-marker-alt"></i> Various Locations</span>
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i> Various
+                      Locations</span
+                    >
                     <span><i class="fas fa-briefcase"></i> Full-time</span>
                     <span><i class="fas fa-clock"></i> 2+ years</span>
                   </div>
@@ -776,7 +834,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Tech Solutions Positions -->
           <div id="tech-positions" class="department-positions">
             <div class="careers-grid">
@@ -784,7 +842,9 @@
                 <div class="career-header">
                   <h3><i class="fas fa-laptop-code"></i> IoT Developer</h3>
                   <div class="career-meta">
-                    <span><i class="fas fa-map-marker-alt"></i> Remote/Office</span>
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i> Remote/Office</span
+                    >
                     <span><i class="fas fa-briefcase"></i> Full-time</span>
                     <span><i class="fas fa-clock"></i> 3+ years</span>
                   </div>
@@ -812,12 +872,16 @@
                   <a href="#contact" class="apply-btn">Apply Now</a>
                 </div>
               </div>
-              
+
               <div class="career-card">
                 <div class="career-header">
-                  <h3><i class="fas fa-mobile-alt"></i> Mobile App Developer</h3>
+                  <h3>
+                    <i class="fas fa-mobile-alt"></i> Mobile App Developer
+                  </h3>
                   <div class="career-meta">
-                    <span><i class="fas fa-map-marker-alt"></i> Remote/Office</span>
+                    <span
+                      ><i class="fas fa-map-marker-alt"></i> Remote/Office</span
+                    >
                     <span><i class="fas fa-briefcase"></i> Full-time</span>
                     <span><i class="fas fa-clock"></i> 2+ years</span>
                   </div>
@@ -848,7 +912,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="benefits-section">
           <h3>Why Work With Us?</h3>
           <div class="benefits-grid">
@@ -858,10 +922,13 @@
               </div>
               <div class="benefit-content">
                 <h4>Training & Development</h4>
-                <p>Continuous learning opportunities to grow your skills and advance your career</p>
+                <p>
+                  Continuous learning opportunities to grow your skills and
+                  advance your career
+                </p>
               </div>
             </div>
-            
+
             <div class="benefit-item">
               <div class="benefit-icon">
                 <i class="fas fa-medal"></i>
@@ -871,7 +938,7 @@
                 <p>Attractive compensation packages with performance bonuses</p>
               </div>
             </div>
-            
+
             <div class="benefit-item">
               <div class="benefit-icon">
                 <i class="fas fa-heartbeat"></i>
@@ -881,14 +948,17 @@
                 <p>Comprehensive health insurance for you and your family</p>
               </div>
             </div>
-            
+
             <div class="benefit-item">
               <div class="benefit-icon">
                 <i class="fas fa-balance-scale"></i>
               </div>
               <div class="benefit-content">
                 <h4>Work-Life Balance</h4>
-                <p>Flexible schedules and paid time off to maintain healthy balance</p>
+                <p>
+                  Flexible schedules and paid time off to maintain healthy
+                  balance
+                </p>
               </div>
             </div>
           </div>
@@ -900,8 +970,9 @@
     <div class="content">
       <h2>Meet Our Team</h2>
       <p>
-        Our dedicated team brings together diverse expertise across all our business
-        sectors to deliver exceptional service and innovative solutions.
+        Our dedicated team brings together diverse expertise across all our
+        business sectors to deliver exceptional service and innovative
+        solutions.
       </p>
 
       <div class="team-section">
@@ -962,10 +1033,22 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>&copy; 2025 Dost Muhammad & Co. All rights reserved.</p>
-      <div class="social-links">
-        <a href="https://web.facebook.com/freelanceBasedITCompany" target="_blank">Facebook</a>
-        <a href="https://www.linkedin.com/in/ahsan-ali-softwareing/" target="_blank">LinkedIn</a>
+      <div class="footer-content">
+        <p class="copyright">&copy; 2025 Dost Muhammad & Co. All rights reserved.</p>
+        <div class="social-links">
+          <a href="https://web.facebook.com/freelanceBasedITCompany" target="_blank" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+            </svg>
+            Facebook
+          </a>
+          <a href="https://www.linkedin.com/in/ahsan-ali-softwareing/" target="_blank" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
     </footer>
 
@@ -976,7 +1059,7 @@
         "images/hero-1.jpg",
         "images/hero-2.jpg",
         "images/hero-3.jpg",
-        "images/hero-4.jpg"
+        "images/hero-4.jpg",
       ];
       let current = 0;
 
@@ -1003,20 +1086,24 @@
       // Department tabs functionality
       function showDepartment(department) {
         // Hide all position sections
-        document.querySelectorAll('.department-positions').forEach(section => {
-          section.classList.remove('active');
-        });
-        
+        document
+          .querySelectorAll(".department-positions")
+          .forEach((section) => {
+            section.classList.remove("active");
+          });
+
         // Deactivate all tabs
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-          btn.classList.remove('active');
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
         });
-        
+
         // Show selected department
-        document.getElementById(`${department}-positions`).classList.add('active');
-        
+        document
+          .getElementById(`${department}-positions`)
+          .classList.add("active");
+
         // Activate clicked tab
-        event.currentTarget.classList.add('active');
+        event.currentTarget.classList.add("active");
       }
     </script>
   </body>
