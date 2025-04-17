@@ -166,6 +166,42 @@
       .footer .social-links a:hover {
         color: #3498db;
       }
+      .team-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .team-member {
+        flex: 1 1 300px;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .team-member img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 4px solid #3498db;
+      }
+
+      .team-member h4 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .team-member p {
+        font-size: 15px;
+        color: #555;
+      }
     </style>
   </head>
   <body>
@@ -254,35 +290,39 @@
     </section>
 
     <div class="content">
-      <h2>Meet Our Team</h2>
+      <h2>Welcome to Dost Muhammad & Co.</h2>
       <p>
-        Dost Muhammad & Co. is a family-driven business combining tradition with innovation.
-        Our leadership ensures every project is handled with care, professionalism, and integrity.
+        We are dedicated to providing premium services in mineral water supply,
+        auto spare parts, smart home solutions, and livestock services. Our
+        commitment is to quality, reliability, and customer satisfaction.
       </p>
-    
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    
-        <div style="flex: 1 1 250px; background: #f1f1f1; border-radius: 8px; padding: 20px; text-align: center;">
-          <img src="https://via.placeholder.com/200" alt="Ahsan Ali" style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 15px;" />
-          <h3>Ahsan Ali</h3>
-          <p>Founder & Software Engineer</p>
-          <p style="font-size: 14px; color: #555;">
-            Ahsan leads our software development and digital services wing, ensuring cutting-edge solutions for clients worldwide.
+
+      <h3>Meet the Team</h3>
+      <div class="team-section">
+        <div class="team-member">
+          <img
+            src="https://i.postimg.cc/fbDMMZ7v/Capture.png"
+            alt="Dost Muhammad"
+          />
+          <h4>Dost Muhammad</h4>
+          <p>
+            Founder and visionary behind our diversified business ventures. Dost
+            Muhammad brings decades of experience, wisdom, and leadership in the
+            fields of livestock, logistics, and mineral water services.
           </p>
         </div>
-    
-        <div style="flex: 1 1 250px; background: #f1f1f1; border-radius: 8px; padding: 20px; text-align: center;">
-          <img src="https://via.placeholder.com/200" alt="Dost Muhammad" style="border-radius: 50%; width: 150px; height: 150px; object-fit: cover; margin-bottom: 15px;" />
-          <h3>Dost Muhammad</h3>
-          <p>Managing Director</p>
-          <p style="font-size: 14px; color: #555;">
-            With years of experience in logistics, livestock, and trading, Dost Muhammad ensures operational excellence and client satisfaction.
+
+        <div class="team-member">
+          <img src="https://via.placeholder.com/200" alt="Ahsan Ali" />
+          <h4>Ahsan Ali</h4>
+          <p>
+            Lead Software Developer and Entrepreneur, Ahsan oversees the digital
+            side of our company, managing web development, IT services, and
+            business automation projects.
           </p>
         </div>
-    
       </div>
     </div>
-    
 
     <!-- Footer -->
     <footer class="footer">
