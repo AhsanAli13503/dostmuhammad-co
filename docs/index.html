@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #4f46e5;  /* Softer indigo */
@@ -18,6 +19,24 @@
       --card-bg: #1f2937;  /* Card background */
     }
 
+    /* RTL Support for Urdu */
+    body.urdu {
+      direction: rtl;
+      font-family: 'Noto Nastaliq Urdu', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    body.urdu .content h2::after,
+    body.urdu .navbar a::after {
+      right: 0;
+      left: auto;
+      transform: none;
+    }
+    
+    body.urdu .form-input {
+      background-position: left 1rem center !important;
+    }
+
+    /* Rest of your existing CSS remains exactly the same */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -80,6 +99,7 @@
     .navbar nav {
       display: flex;
       gap: 1.5rem;
+      align-items: center;
     }
 
     .navbar a {
@@ -104,21 +124,28 @@
       width: 100%;
     }
 
-    .dark-mode-toggle {
+    .dark-mode-toggle, .language-toggle {
       background: none;
       border: none;
       color: var(--light);
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: transform 0.3s ease;
+      padding: 0.5rem;
     }
 
-    body.light-mode .dark-mode-toggle {
+    body.light-mode .dark-mode-toggle,
+    body.light-mode .language-toggle {
       color: #111827;
     }
 
-    .dark-mode-toggle:hover {
+    .dark-mode-toggle:hover, .language-toggle:hover {
       transform: scale(1.1);
+    }
+
+    .language-toggle {
+      margin-left: 1rem;
+      font-weight: 500;
     }
 
     /* Hero Section */
@@ -399,6 +426,11 @@
       margin: 0;
     }
 
+    body.urdu .career-body ul {
+      padding-right: 1.2rem;
+      padding-left: 0;
+    }
+
     .career-body li {
       margin-bottom: 0.5rem;
       color: var(--gray);
@@ -575,6 +607,10 @@
       text-align: left;
     }
 
+    body.urdu .form-group {
+      text-align: right;
+    }
+
     .contact-form input,
     .contact-form textarea,
     .contact-form select {
@@ -719,6 +755,13 @@
       
       .navbar {
         padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .navbar nav {
+        width: 100%;
+        justify-content: space-between;
       }
       
       .content h2 {
@@ -745,19 +788,22 @@
   <div class="navbar">
     <a href="#" style="font-size: 1.8rem;">Dost Muhammad & Co.</a>
     <nav>
-      <a href="#hero">Home</a>
-      <a href="#careers">Careers</a>
-      <a href="#contact">Contact</a>
+      <a href="#hero" data-i18n="nav.home">Home</a>
+      <a href="#careers" data-i18n="nav.careers">Careers</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <button id="languageToggle" class="language-toggle">
+        <span data-i18n="language.english">English</span>/<span data-i18n="language.urdu">اردو</span>
+      </button>
+      <button id="darkModeToggle" class="dark-mode-toggle">
+        <i class="fas fa-sun"></i>
+      </button>
     </nav>
-    <button id="darkModeToggle" class="dark-mode-toggle">
-      <i class="fas fa-sun"></i>
-    </button>
   </div>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="overlay"></div>
-    <h1>
+    <h1 data-i18n="hero.title">
       Your Trusted Partner for Smart Homes, Livestock, Water & Auto Parts
     </h1>
   </section>
@@ -766,32 +812,32 @@
   <section class="services">
     <a href="smarthome" class="service-card">
       <img src="images/smart-home.jpg" alt="Smart Home Automation System" />
-      <h3>Smart Home Solutions</h3>
-      <p>
+      <h3 data-i18n="services.smart_home.title">Smart Home Solutions</h3>
+      <p data-i18n="services.smart_home.description">
         Cutting-edge smart home automation systems that enhance security, energy efficiency, and comfort in your home and business.
       </p>
     </a>
 
     <a href="livestock" class="service-card">
       <img src="images/livestock.jpg" alt="Healthy Livestock" />
-      <h3>Livestock & Farming</h3>
-      <p>
+      <h3 data-i18n="services.livestock.title">Livestock & Farming</h3>
+      <p data-i18n="services.livestock.description">
         Premium livestock services for farmers and traders, including livestock sales, animal care, and modern management solutions.
       </p>
     </a>
 
     <a href="water" class="service-card">
       <img src="images/water-plant.jpg" alt="Water Purification Plant" />
-      <h3>Drinking Water Solutions</h3>
-      <p>
+      <h3 data-i18n="services.water.title">Drinking Water Solutions</h3>
+      <p data-i18n="services.water.description">
         Clean, safe, and reliable drinking water solutions, including water purification systems and bottled water supply.
       </p>
     </a>
 
     <a href="autoparts" class="service-card">
       <img src="images/auto-parts.jpg" alt="Auto Spare Parts" />
-      <h3>Auto Spare Parts</h3>
-      <p>
+      <h3 data-i18n="services.auto_parts.title">Auto Spare Parts</h3>
+      <p data-i18n="services.auto_parts.description">
         High-quality automotive spare parts for all vehicle types, ensuring durability, performance, and affordability.
       </p>
     </a>
@@ -799,8 +845,8 @@
 
   <!-- About Section -->
   <div class="content">
-    <h2>Welcome to Dost Muhammad & Co.</h2>
-    <p>
+    <h2 data-i18n="about.title">Welcome to Dost Muhammad & Co.</h2>
+    <p data-i18n="about.description">
       We are dedicated to providing premium services in mineral water supply, auto spare parts, smart home solutions, and livestock services. Our commitment is to quality, reliability, and customer satisfaction. With years of experience in these diverse fields, we've established ourselves as a trusted name in the industry.
     </p>
   </div>
@@ -809,8 +855,8 @@
   <section class="careers-section" id="careers">
     <div class="careers-container">
       <div class="content">
-        <h2>Join Our Team</h2>
-        <p>
+        <h2 data-i18n="careers.title">Join Our Team</h2>
+        <p data-i18n="careers.description">
           At Dost Muhammad & Co., we're building the future across multiple industries in Pakistan. Explore career opportunities in our different business divisions.
         </p>
       </div>
@@ -818,16 +864,16 @@
       <!-- Department Tabs -->
       <div class="department-tabs">
         <button class="tab-btn active" onclick="showDepartment('water')">
-          <i class="fas fa-tint"></i> Water Services
+          <i class="fas fa-tint"></i> <span data-i18n="careers.tabs.water">Water Services</span>
         </button>
         <button class="tab-btn" onclick="showDepartment('auto')">
-          <i class="fas fa-car"></i> Auto Parts
+          <i class="fas fa-car"></i> <span data-i18n="careers.tabs.auto">Auto Parts</span>
         </button>
         <button class="tab-btn" onclick="showDepartment('livestock')">
-          <i class="fas fa-paw"></i> Livestock
+          <i class="fas fa-paw"></i> <span data-i18n="careers.tabs.livestock">Livestock</span>
         </button>
         <button class="tab-btn" onclick="showDepartment('tech')">
-          <i class="fas fa-laptop-code"></i> Tech Solutions
+          <i class="fas fa-laptop-code"></i> <span data-i18n="careers.tabs.tech">Tech Solutions</span>
         </button>
       </div>
 
@@ -838,67 +884,67 @@
           <div class="careers-grid">
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-flask"></i> Water Quality Technician</h3>
+                <h3><i class="fas fa-flask"></i> <span data-i18n="careers.positions.water_tech.title">Water Quality Technician</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Mansehra</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 1+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.mansehra">Mansehra</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.1_year">1+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Conduct regular water quality tests and analysis</li>
-                    <li>Monitor purification processes and equipment</li>
-                    <li>Maintain accurate records of water quality data</li>
-                    <li>Ensure compliance with health and safety standards</li>
+                    <li data-i18n="careers.positions.water_tech.responsibilities.1">Conduct regular water quality tests and analysis</li>
+                    <li data-i18n="careers.positions.water_tech.responsibilities.2">Monitor purification processes and equipment</li>
+                    <li data-i18n="careers.positions.water_tech.responsibilities.3">Maintain accurate records of water quality data</li>
+                    <li data-i18n="careers.positions.water_tech.responsibilities.4">Ensure compliance with health and safety standards</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Diploma in Chemistry or related field</li>
-                    <li>Knowledge of water testing procedures</li>
-                    <li>Attention to detail and analytical skills</li>
+                    <li data-i18n="careers.positions.water_tech.requirements.1">Diploma in Chemistry or related field</li>
+                    <li data-i18n="careers.positions.water_tech.requirements.2">Knowledge of water testing procedures</li>
+                    <li data-i18n="careers.positions.water_tech.requirements.3">Attention to detail and analytical skills</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
 
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-truck"></i> Distribution Manager</h3>
+                <h3><i class="fas fa-truck"></i> <span data-i18n="careers.positions.distribution_manager.title">Distribution Manager</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Mansehra</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 3+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.mansehra">Mansehra</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.3_years">3+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Oversee water distribution operations</li>
-                    <li>Manage delivery schedules and routes</li>
-                    <li>Coordinate with production and sales teams</li>
-                    <li>Optimize logistics for efficiency</li>
+                    <li data-i18n="careers.positions.distribution_manager.responsibilities.1">Oversee water distribution operations</li>
+                    <li data-i18n="careers.positions.distribution_manager.responsibilities.2">Manage delivery schedules and routes</li>
+                    <li data-i18n="careers.positions.distribution_manager.responsibilities.3">Coordinate with production and sales teams</li>
+                    <li data-i18n="careers.positions.distribution_manager.responsibilities.4">Optimize logistics for efficiency</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Degree in Business or Logistics preferred</li>
-                    <li>Experience in distribution management</li>
-                    <li>Strong organizational skills</li>
+                    <li data-i18n="careers.positions.distribution_manager.requirements.1">Degree in Business or Logistics preferred</li>
+                    <li data-i18n="careers.positions.distribution_manager.requirements.2">Experience in distribution management</li>
+                    <li data-i18n="careers.positions.distribution_manager.requirements.3">Strong organizational skills</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
           </div>
@@ -909,67 +955,67 @@
           <div class="careers-grid">
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-cogs"></i> Parts Specialist</h3>
+                <h3><i class="fas fa-cogs"></i> <span data-i18n="careers.positions.parts_specialist.title">Parts Specialist</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Mansehra</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 2+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.mansehra">Mansehra</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.2_years">2+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Assist customers in identifying correct auto parts</li>
-                    <li>Maintain inventory and stock levels</li>
-                    <li>Process orders and shipments</li>
-                    <li>Provide technical product information</li>
+                    <li data-i18n="careers.positions.parts_specialist.responsibilities.1">Assist customers in identifying correct auto parts</li>
+                    <li data-i18n="careers.positions.parts_specialist.responsibilities.2">Maintain inventory and stock levels</li>
+                    <li data-i18n="careers.positions.parts_specialist.responsibilities.3">Process orders and shipments</li>
+                    <li data-i18n="careers.positions.parts_specialist.responsibilities.4">Provide technical product information</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Knowledge of automotive systems</li>
-                    <li>Customer service experience</li>
-                    <li>Detail-oriented with strong memory</li>
+                    <li data-i18n="careers.positions.parts_specialist.requirements.1">Knowledge of automotive systems</li>
+                    <li data-i18n="careers.positions.parts_specialist.requirements.2">Customer service experience</li>
+                    <li data-i18n="careers.positions.parts_specialist.requirements.3">Detail-oriented with strong memory</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
 
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-warehouse"></i> Inventory Controller</h3>
+                <h3><i class="fas fa-warehouse"></i> <span data-i18n="careers.positions.inventory_controller.title">Inventory Controller</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Mansehra</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 3+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.mansehra">Mansehra</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.3_years">3+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Manage auto parts inventory system</li>
-                    <li>Conduct regular stock audits</li>
-                    <li>Coordinate with suppliers and vendors</li>
-                    <li>Forecast inventory needs</li>
+                    <li data-i18n="careers.positions.inventory_controller.responsibilities.1">Manage auto parts inventory system</li>
+                    <li data-i18n="careers.positions.inventory_controller.responsibilities.2">Conduct regular stock audits</li>
+                    <li data-i18n="careers.positions.inventory_controller.responsibilities.3">Coordinate with suppliers and vendors</li>
+                    <li data-i18n="careers.positions.inventory_controller.responsibilities.4">Forecast inventory needs</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Experience in inventory management</li>
-                    <li>Proficiency with inventory software</li>
-                    <li>Strong analytical skills</li>
+                    <li data-i18n="careers.positions.inventory_controller.requirements.1">Experience in inventory management</li>
+                    <li data-i18n="careers.positions.inventory_controller.requirements.2">Proficiency with inventory software</li>
+                    <li data-i18n="careers.positions.inventory_controller.requirements.3">Strong analytical skills</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
           </div>
@@ -980,67 +1026,67 @@
           <div class="careers-grid">
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-horse"></i> Livestock Manager</h3>
+                <h3><i class="fas fa-horse"></i> <span data-i18n="careers.positions.livestock_manager.title">Livestock Manager</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Rural Areas</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 5+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.rural">Rural Areas</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.5_years">5+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Oversee daily livestock operations</li>
-                    <li>Implement animal health programs</li>
-                    <li>Manage breeding and feeding programs</li>
-                    <li>Train and supervise farm staff</li>
+                    <li data-i18n="careers.positions.livestock_manager.responsibilities.1">Oversee daily livestock operations</li>
+                    <li data-i18n="careers.positions.livestock_manager.responsibilities.2">Implement animal health programs</li>
+                    <li data-i18n="careers.positions.livestock_manager.responsibilities.3">Manage breeding and feeding programs</li>
+                    <li data-i18n="careers.positions.livestock_manager.responsibilities.4">Train and supervise farm staff</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Degree in Animal Science or related field</li>
-                    <li>Extensive livestock experience</li>
-                    <li>Leadership and management skills</li>
+                    <li data-i18n="careers.positions.livestock_manager.requirements.1">Degree in Animal Science or related field</li>
+                    <li data-i18n="careers.positions.livestock_manager.requirements.2">Extensive livestock experience</li>
+                    <li data-i18n="careers.positions.livestock_manager.requirements.3">Leadership and management skills</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
 
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-syringe"></i> Animal Health Technician</h3>
+                <h3><i class="fas fa-syringe"></i> <span data-i18n="careers.positions.animal_tech.title">Animal Health Technician</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Various Locations</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 2+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.various">Various Locations</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.2_years">2+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Provide basic veterinary care</li>
-                    <li>Administer vaccinations and medications</li>
-                    <li>Monitor animal health and nutrition</li>
-                    <li>Maintain health records</li>
+                    <li data-i18n="careers.positions.animal_tech.responsibilities.1">Provide basic veterinary care</li>
+                    <li data-i18n="careers.positions.animal_tech.responsibilities.2">Administer vaccinations and medications</li>
+                    <li data-i18n="careers.positions.animal_tech.responsibilities.3">Monitor animal health and nutrition</li>
+                    <li data-i18n="careers.positions.animal_tech.responsibilities.4">Maintain health records</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Diploma in Veterinary Technology</li>
-                    <li>Experience with farm animals</li>
-                    <li>Compassion for animal welfare</li>
+                    <li data-i18n="careers.positions.animal_tech.requirements.1">Diploma in Veterinary Technology</li>
+                    <li data-i18n="careers.positions.animal_tech.requirements.2">Experience with farm animals</li>
+                    <li data-i18n="careers.positions.animal_tech.requirements.3">Compassion for animal welfare</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
           </div>
@@ -1051,67 +1097,67 @@
           <div class="careers-grid">
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-laptop-code"></i> IoT Developer</h3>
+                <h3><i class="fas fa-laptop-code"></i> <span data-i18n="careers.positions.iot_dev.title">IoT Developer</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Remote/Office</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 3+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.remote">Remote/Office</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.3_years">3+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Develop IoT solutions for smart homes</li>
-                    <li>Integrate hardware and software systems</li>
-                    <li>Create automation workflows</li>
-                    <li>Troubleshoot technical issues</li>
+                    <li data-i18n="careers.positions.iot_dev.responsibilities.1">Develop IoT solutions for smart homes</li>
+                    <li data-i18n="careers.positions.iot_dev.responsibilities.2">Integrate hardware and software systems</li>
+                    <li data-i18n="careers.positions.iot_dev.responsibilities.3">Create automation workflows</li>
+                    <li data-i18n="careers.positions.iot_dev.responsibilities.4">Troubleshoot technical issues</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Degree in Computer Science or Engineering</li>
-                    <li>Experience with IoT platforms</li>
-                    <li>Programming skills (Python, C++, etc.)</li>
+                    <li data-i18n="careers.positions.iot_dev.requirements.1">Degree in Computer Science or Engineering</li>
+                    <li data-i18n="careers.positions.iot_dev.requirements.2">Experience with IoT platforms</li>
+                    <li data-i18n="careers.positions.iot_dev.requirements.3">Programming skills (Python, C++, etc.)</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
 
             <div class="career-card">
               <div class="career-header">
-                <h3><i class="fas fa-mobile-alt"></i> Mobile App Developer</h3>
+                <h3><i class="fas fa-mobile-alt"></i> <span data-i18n="careers.positions.mobile_dev.title">Mobile App Developer</span></h3>
                 <div class="career-meta">
-                  <span><i class="fas fa-map-marker-alt"></i> Remote/Office</span>
-                  <span><i class="fas fa-briefcase"></i> Full-time</span>
-                  <span><i class="fas fa-clock"></i> 2+ years</span>
+                  <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="careers.locations.remote">Remote/Office</span></span>
+                  <span><i class="fas fa-briefcase"></i> <span data-i18n="careers.employment.full_time">Full-time</span></span>
+                  <span><i class="fas fa-clock"></i> <span data-i18n="careers.experience.2_years">2+ years</span></span>
                 </div>
               </div>
               <div class="career-body">
                 <div class="responsibilities">
-                  <h4>Responsibilities:</h4>
+                  <h4 data-i18n="careers.responsibilities">Responsibilities:</h4>
                   <ul>
-                    <li>Develop and maintain mobile applications</li>
-                    <li>Collaborate with UI/UX designers</li>
-                    <li>Implement new features and improvements</li>
-                    <li>Ensure app performance and quality</li>
+                    <li data-i18n="careers.positions.mobile_dev.responsibilities.1">Develop and maintain mobile applications</li>
+                    <li data-i18n="careers.positions.mobile_dev.responsibilities.2">Collaborate with UI/UX designers</li>
+                    <li data-i18n="careers.positions.mobile_dev.responsibilities.3">Implement new features and improvements</li>
+                    <li data-i18n="careers.positions.mobile_dev.responsibilities.4">Ensure app performance and quality</li>
                   </ul>
                 </div>
                 <div class="requirements">
-                  <h4>Requirements:</h4>
+                  <h4 data-i18n="careers.requirements">Requirements:</h4>
                   <ul>
-                    <li>Experience with React Native or Flutter</li>
-                    <li>JavaScript/TypeScript proficiency</li>
-                    <li>Portfolio of published apps</li>
+                    <li data-i18n="careers.positions.mobile_dev.requirements.1">Experience with React Native or Flutter</li>
+                    <li data-i18n="careers.positions.mobile_dev.requirements.2">JavaScript/TypeScript proficiency</li>
+                    <li data-i18n="careers.positions.mobile_dev.requirements.3">Portfolio of published apps</li>
                   </ul>
                 </div>
               </div>
               <div class="career-footer">
-                <button class="apply-btn">Apply Now</button>
+                <button class="apply-btn" data-i18n="careers.apply">Apply Now</button>
               </div>
             </div>
           </div>
@@ -1119,15 +1165,15 @@
       </div>
 
       <div class="benefits-section">
-        <h3>Why Work With Us?</h3>
+        <h3 data-i18n="careers.benefits.title">Why Work With Us?</h3>
         <div class="benefits-grid">
           <div class="benefit-item">
             <div class="benefit-icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div class="benefit-content">
-              <h4>Training & Development</h4>
-              <p>
+              <h4 data-i18n="careers.benefits.training.title">Training & Development</h4>
+              <p data-i18n="careers.benefits.training.description">
                 Continuous learning opportunities to grow your skills and advance your career
               </p>
             </div>
@@ -1138,8 +1184,8 @@
               <i class="fas fa-medal"></i>
             </div>
             <div class="benefit-content">
-              <h4>Competitive Salaries</h4>
-              <p>Attractive compensation packages with performance bonuses</p>
+              <h4 data-i18n="careers.benefits.salaries.title">Competitive Salaries</h4>
+              <p data-i18n="careers.benefits.salaries.description">Attractive compensation packages with performance bonuses</p>
             </div>
           </div>
 
@@ -1148,8 +1194,8 @@
               <i class="fas fa-heartbeat"></i>
             </div>
             <div class="benefit-content">
-              <h4>Health Benefits</h4>
-              <p>Comprehensive health insurance for you and your family</p>
+              <h4 data-i18n="careers.benefits.health.title">Health Benefits</h4>
+              <p data-i18n="careers.benefits.health.description">Comprehensive health insurance for you and your family</p>
             </div>
           </div>
 
@@ -1158,8 +1204,8 @@
               <i class="fas fa-balance-scale"></i>
             </div>
             <div class="benefit-content">
-              <h4>Work-Life Balance</h4>
-              <p>
+              <h4 data-i18n="careers.benefits.balance.title">Work-Life Balance</h4>
+              <p data-i18n="careers.benefits.balance.description">
                 Flexible schedules and paid time off to maintain healthy balance
               </p>
             </div>
@@ -1171,29 +1217,29 @@
 
   <!-- Team Section -->
   <div class="content">
-    <h2>Meet Our Team</h2>
-    <p>
+    <h2 data-i18n="team.title">Meet Our Team</h2>
+    <p data-i18n="team.description">
       Our dedicated team brings together diverse expertise across all our business sectors to deliver exceptional service and innovative solutions.
     </p>
 
     <div class="team-section">
       <div class="team-member">
         <h4>Dost Muhammad</h4>
-        <p>
+        <p data-i18n="team.dost_description">
           Founder and visionary behind our diversified business ventures. Dost Muhammad brings decades of experience, wisdom, and leadership in the fields of livestock, logistics, and mineral water services.
         </p>
       </div>
 
       <div class="team-member">
         <h4>Ahsan Ali</h4>
-        <p>
+        <p data-i18n="team.ahsan_description">
           Lead Software Developer and Entrepreneur, Ahsan oversees the digital side of our company, managing web development, IT services, and business automation projects.
         </p>
       </div>
 
       <div class="team-member">
         <h4>Awais Ali</h4>
-        <p>
+        <p data-i18n="team.awais_description">
           Business Administration specialist currently pursuing his degree while actively contributing to company operations. He helps manage day-to-day business activities, financial planning, and strategic development.
         </p>
       </div>
@@ -1202,34 +1248,34 @@
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <p>
+    <h2 data-i18n="contact.title">Contact Us</h2>
+    <p data-i18n="contact.description">
       Feel free to reach out for inquiries, feedback, or any questions. We'd love to hear from you!
     </p>
     <form class="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <input type="tel" placeholder="Your Phone Number" />
+      <input type="text" placeholder="Your Name" data-i18n-placeholder="contact.form.name" required />
+      <input type="email" placeholder="Your Email" data-i18n-placeholder="contact.form.email" required />
+      <input type="tel" placeholder="Your Phone Number" data-i18n-placeholder="contact.form.phone" />
       <div class="form-group">
         <select class="form-input" required>
-          <option value="">Select Department</option>
-          <option value="smart-home">Smart Home Solutions</option>
-          <option value="livestock">Livestock & Farming</option>
-          <option value="water">Drinking Water Solutions</option>
-          <option value="auto-parts">Auto Spare Parts</option>
-          <option value="careers">Careers</option>
-          <option value="other">Other Inquiry</option>
+          <option value="" data-i18n="contact.form.select_department">Select Department</option>
+          <option value="smart-home" data-i18n="services.smart_home.title">Smart Home Solutions</option>
+          <option value="livestock" data-i18n="services.livestock.title">Livestock & Farming</option>
+          <option value="water" data-i18n="services.water.title">Drinking Water Solutions</option>
+          <option value="auto-parts" data-i18n="services.auto_parts.title">Auto Spare Parts</option>
+          <option value="careers" data-i18n="nav.careers">Careers</option>
+          <option value="other" data-i18n="contact.form.other">Other Inquiry</option>
         </select>
       </div>
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
+      <textarea placeholder="Your Message" data-i18n-placeholder="contact.form.message" rows="5" required></textarea>
+      <button type="submit" data-i18n="contact.form.submit">Send Message</button>
     </form>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p class="copyright">
+      <p class="copyright" data-i18n="footer.copyright">
         &copy; 2025 Dost Muhammad & Co. All rights reserved.
       </p>
       <div class="social-links">
@@ -1237,19 +1283,320 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
           </svg>
-          Facebook
+          <span data-i18n="social.facebook">Facebook</span>
         </a>
         <a href="https://www.linkedin.com/in/ahsan-ali-softwareing/" target="_blank" class="social-link">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
-          LinkedIn
+          <span data-i18n="social.linkedin">LinkedIn</span>
         </a>
       </div>
     </div>
   </footer>
 
   <script>
+    // Translation Data
+    const translations = {
+      en: {
+        "nav.home": "Home",
+        "nav.careers": "Careers",
+        "nav.contact": "Contact",
+        "language.english": "English",
+        "language.urdu": "اردو",
+        "hero.title": "Your Trusted Partner for Smart Homes, Livestock, Water & Auto Parts",
+        "services.smart_home.title": "Smart Home Solutions",
+        "services.smart_home.description": "Cutting-edge smart home automation systems that enhance security, energy efficiency, and comfort in your home and business.",
+        "services.livestock.title": "Livestock & Farming",
+        "services.livestock.description": "Premium livestock services for farmers and traders, including livestock sales, animal care, and modern management solutions.",
+        "services.water.title": "Drinking Water Solutions",
+        "services.water.description": "Clean, safe, and reliable drinking water solutions, including water purification systems and bottled water supply.",
+        "services.auto_parts.title": "Auto Spare Parts",
+        "services.auto_parts.description": "High-quality automotive spare parts for all vehicle types, ensuring durability, performance, and affordability.",
+        "about.title": "Welcome to Dost Muhammad & Co.",
+        "about.description": "We are dedicated to providing premium services in mineral water supply, auto spare parts, smart home solutions, and livestock services. Our commitment is to quality, reliability, and customer satisfaction. With years of experience in these diverse fields, we've established ourselves as a trusted name in the industry.",
+        "careers.title": "Join Our Team",
+        "careers.description": "At Dost Muhammad & Co., we're building the future across multiple industries in Pakistan. Explore career opportunities in our different business divisions.",
+        "careers.tabs.water": "Water Services",
+        "careers.tabs.auto": "Auto Parts",
+        "careers.tabs.livestock": "Livestock",
+        "careers.tabs.tech": "Tech Solutions",
+        "careers.locations.mansehra": "Mansehra",
+        "careers.locations.rural": "Rural Areas",
+        "careers.locations.various": "Various Locations",
+        "careers.locations.remote": "Remote/Office",
+        "careers.employment.full_time": "Full-time",
+        "careers.experience.1_year": "1+ years",
+        "careers.experience.2_years": "2+ years",
+        "careers.experience.3_years": "3+ years",
+        "careers.experience.5_years": "5+ years",
+        "careers.responsibilities": "Responsibilities:",
+        "careers.requirements": "Requirements:",
+        "careers.apply": "Apply Now",
+        "careers.positions.water_tech.title": "Water Quality Technician",
+        "careers.positions.water_tech.responsibilities.1": "Conduct regular water quality tests and analysis",
+        "careers.positions.water_tech.responsibilities.2": "Monitor purification processes and equipment",
+        "careers.positions.water_tech.responsibilities.3": "Maintain accurate records of water quality data",
+        "careers.positions.water_tech.responsibilities.4": "Ensure compliance with health and safety standards",
+        "careers.positions.water_tech.requirements.1": "Diploma in Chemistry or related field",
+        "careers.positions.water_tech.requirements.2": "Knowledge of water testing procedures",
+        "careers.positions.water_tech.requirements.3": "Attention to detail and analytical skills",
+        "careers.positions.distribution_manager.title": "Distribution Manager",
+        "careers.positions.distribution_manager.responsibilities.1": "Oversee water distribution operations",
+        "careers.positions.distribution_manager.responsibilities.2": "Manage delivery schedules and routes",
+        "careers.positions.distribution_manager.responsibilities.3": "Coordinate with production and sales teams",
+        "careers.positions.distribution_manager.responsibilities.4": "Optimize logistics for efficiency",
+        "careers.positions.distribution_manager.requirements.1": "Degree in Business or Logistics preferred",
+        "careers.positions.distribution_manager.requirements.2": "Experience in distribution management",
+        "careers.positions.distribution_manager.requirements.3": "Strong organizational skills",
+        "careers.positions.parts_specialist.title": "Parts Specialist",
+        "careers.positions.parts_specialist.responsibilities.1": "Assist customers in identifying correct auto parts",
+        "careers.positions.parts_specialist.responsibilities.2": "Maintain inventory and stock levels",
+        "careers.positions.parts_specialist.responsibilities.3": "Process orders and shipments",
+        "careers.positions.parts_specialist.responsibilities.4": "Provide technical product information",
+        "careers.positions.parts_specialist.requirements.1": "Knowledge of automotive systems",
+        "careers.positions.parts_specialist.requirements.2": "Customer service experience",
+        "careers.positions.parts_specialist.requirements.3": "Detail-oriented with strong memory",
+        "careers.positions.inventory_controller.title": "Inventory Controller",
+        "careers.positions.inventory_controller.responsibilities.1": "Manage auto parts inventory system",
+        "careers.positions.inventory_controller.responsibilities.2": "Conduct regular stock audits",
+        "careers.positions.inventory_controller.responsibilities.3": "Coordinate with suppliers and vendors",
+        "careers.positions.inventory_controller.responsibilities.4": "Forecast inventory needs",
+        "careers.positions.inventory_controller.requirements.1": "Experience in inventory management",
+        "careers.positions.inventory_controller.requirements.2": "Proficiency with inventory software",
+        "careers.positions.inventory_controller.requirements.3": "Strong analytical skills",
+        "careers.positions.livestock_manager.title": "Livestock Manager",
+        "careers.positions.livestock_manager.responsibilities.1": "Oversee daily livestock operations",
+        "careers.positions.livestock_manager.responsibilities.2": "Implement animal health programs",
+        "careers.positions.livestock_manager.responsibilities.3": "Manage breeding and feeding programs",
+        "careers.positions.livestock_manager.responsibilities.4": "Train and supervise farm staff",
+        "careers.positions.livestock_manager.requirements.1": "Degree in Animal Science or related field",
+        "careers.positions.livestock_manager.requirements.2": "Extensive livestock experience",
+        "careers.positions.livestock_manager.requirements.3": "Leadership and management skills",
+        "careers.positions.animal_tech.title": "Animal Health Technician",
+        "careers.positions.animal_tech.responsibilities.1": "Provide basic veterinary care",
+        "careers.positions.animal_tech.responsibilities.2": "Administer vaccinations and medications",
+        "careers.positions.animal_tech.responsibilities.3": "Monitor animal health and nutrition",
+        "careers.positions.animal_tech.responsibilities.4": "Maintain health records",
+        "careers.positions.animal_tech.requirements.1": "Diploma in Veterinary Technology",
+        "careers.positions.animal_tech.requirements.2": "Experience with farm animals",
+        "careers.positions.animal_tech.requirements.3": "Compassion for animal welfare",
+        "careers.positions.iot_dev.title": "IoT Developer",
+        "careers.positions.iot_dev.responsibilities.1": "Develop IoT solutions for smart homes",
+        "careers.positions.iot_dev.responsibilities.2": "Integrate hardware and software systems",
+        "careers.positions.iot_dev.responsibilities.3": "Create automation workflows",
+        "careers.positions.iot_dev.responsibilities.4": "Troubleshoot technical issues",
+        "careers.positions.iot_dev.requirements.1": "Degree in Computer Science or Engineering",
+        "careers.positions.iot_dev.requirements.2": "Experience with IoT platforms",
+        "careers.positions.iot_dev.requirements.3": "Programming skills (Python, C++, etc.)",
+        "careers.positions.mobile_dev.title": "Mobile App Developer",
+        "careers.positions.mobile_dev.responsibilities.1": "Develop and maintain mobile applications",
+        "careers.positions.mobile_dev.responsibilities.2": "Collaborate with UI/UX designers",
+        "careers.positions.mobile_dev.responsibilities.3": "Implement new features and improvements",
+        "careers.positions.mobile_dev.responsibilities.4": "Ensure app performance and quality",
+        "careers.positions.mobile_dev.requirements.1": "Experience with React Native or Flutter",
+        "careers.positions.mobile_dev.requirements.2": "JavaScript/TypeScript proficiency",
+        "careers.positions.mobile_dev.requirements.3": "Portfolio of published apps",
+        "careers.benefits.title": "Why Work With Us?",
+        "careers.benefits.training.title": "Training & Development",
+        "careers.benefits.training.description": "Continuous learning opportunities to grow your skills and advance your career",
+        "careers.benefits.salaries.title": "Competitive Salaries",
+        "careers.benefits.salaries.description": "Attractive compensation packages with performance bonuses",
+        "careers.benefits.health.title": "Health Benefits",
+        "careers.benefits.health.description": "Comprehensive health insurance for you and your family",
+        "careers.benefits.balance.title": "Work-Life Balance",
+        "careers.benefits.balance.description": "Flexible schedules and paid time off to maintain healthy balance",
+        "team.title": "Meet Our Team",
+        "team.description": "Our dedicated team brings together diverse expertise across all our business sectors to deliver exceptional service and innovative solutions.",
+        "team.dost_description": "Founder and visionary behind our diversified business ventures. Dost Muhammad brings decades of experience, wisdom, and leadership in the fields of livestock, logistics, and mineral water services.",
+        "team.ahsan_description": "Lead Software Developer and Entrepreneur, Ahsan oversees the digital side of our company, managing web development, IT services, and business automation projects.",
+        "team.awais_description": "Business Administration specialist currently pursuing his degree while actively contributing to company operations. He helps manage day-to-day business activities, financial planning, and strategic development.",
+        "contact.title": "Contact Us",
+        "contact.description": "Feel free to reach out for inquiries, feedback, or any questions. We'd love to hear from you!",
+        "contact.form.name": "Your Name",
+        "contact.form.email": "Your Email",
+        "contact.form.phone": "Your Phone Number",
+        "contact.form.select_department": "Select Department",
+        "contact.form.message": "Your Message",
+        "contact.form.submit": "Send Message",
+        "contact.form.other": "Other Inquiry",
+        "footer.copyright": "© 2025 Dost Muhammad & Co. All rights reserved.",
+        "social.facebook": "Facebook",
+        "social.linkedin": "LinkedIn"
+      },
+      ur: {
+        "nav.home": "ہوم",
+        "nav.careers": "کیریئرز",
+        "nav.contact": "رابطہ",
+        "language.english": "English",
+        "language.urdu": "اردو",
+        "hero.title": "اسمارٹ ہومز، لائیو سٹاک، پانی اور آٹو پارٹس کے لیے آپ کا قابل اعتماد پارٹنر",
+        "services.smart_home.title": "اسمارٹ ہوم حل",
+        "services.smart_home.description": "جدید ترین اسمارٹ ہوم آٹومیشن سسٹم جو آپ کے گھر اور کاروبار میں سیکورٹی، توانائی کی بچت اور آرام کو بڑھاتے ہیں۔",
+        "services.livestock.title": "مویشی اور کاشتکاری",
+        "services.livestock.description": "کسانوں اور تاجروں کے لیے اعلیٰ معیار کے مویشیوں کی خدمات، بشمول مویشیوں کی فروخت، جانوروں کی دیکھ بھال اور جدید انتظامی حل۔",
+        "services.water.title": "پینے کے پانی کے حل",
+        "services.water.description": "صاف، محفوظ اور قابل اعتماد پینے کے پانی کے حل، بشمول واٹر پیوریفیکیشن سسٹم اور بوتل بند پانی کی فراہمی۔",
+        "services.auto_parts.title": "آٹو سپیئر پارٹس",
+        "services.auto_parts.description": "ہر قسم کی گاڑیوں کے لیے اعلیٰ معیار کے آٹو موبائل سپیئر پارٹس، جو پائیداری، کارکردگی اور affordability کو یقینی بناتے ہیں۔",
+        "about.title": "دوست محمد اینڈ کمپنی میں خوش آمدید",
+        "about.description": "ہم معدنی پانی کی فراہمی، آٹو سپیئر پارٹس، اسمارٹ ہوم حل اور مویشیوں کی خدمات میں اعلیٰ معیار کی خدمات فراہم کرنے کے لیے وقف ہیں۔ ہماری کوشش معیار، اعتماد اور گاہک کی تسلی پر ہے۔ ان مختلف شعبوں میں سالوں کے تجربے کے ساتھ، ہم نے صنعت میں ایک قابل اعتماد نام قائم کیا ہے۔",
+        "careers.title": "ہماری ٹیم میں شامل ہوں",
+        "careers.description": "دوست محمد اینڈ کمپنی میں، ہم پاکستان میں متعدد صنعتوں میں مستقبل کی تعمیر کر رہے ہیں۔ ہمارے مختلف کاروباری شعبوں میں کیریئر کے مواقع دریافت کریں۔",
+        "careers.tabs.water": "پانی کی خدمات",
+        "careers.tabs.auto": "آٹو پارٹس",
+        "careers.tabs.livestock": "مویشی",
+        "careers.tabs.tech": "ٹیک حل",
+        "careers.locations.mansehra": "مانسہرہ",
+        "careers.locations.rural": "دیہی علاقے",
+        "careers.locations.various": "مختلف مقامات",
+        "careers.locations.remote": "ریموٹ/دفتر",
+        "careers.employment.full_time": "فل ٹائم",
+        "careers.experience.1_year": "1+ سال",
+        "careers.experience.2_years": "2+ سال",
+        "careers.experience.3_years": "3+ سال",
+        "careers.experience.5_years": "5+ سال",
+        "careers.responsibilities": "ذمہ داریاں:",
+        "careers.requirements": "ضروریات:",
+        "careers.apply": "ابھی درخواست دیں",
+        "careers.positions.water_tech.title": "پانی کا معیار ٹیکنیشن",
+        "careers.positions.water_tech.responsibilities.1": "پانی کے معیار کے باقاعدہ ٹیسٹ اور تجزیہ کروائیں",
+        "careers.positions.water_tech.responsibilities.2": "صفائی کے عمل اور سامان کی نگرانی کریں",
+        "careers.positions.water_tech.responsibilities.3": "پانی کے معیار کے اعداد و شمار کا درست ریکارڈ رکھیں",
+        "careers.positions.water_tech.responsibilities.4": "صحت اور حفاظت کے معیارات کی پابندی یقینی بنائیں",
+        "careers.positions.water_tech.requirements.1": "کیمسٹری یا متعلقہ فیلڈ میں ڈپلومہ",
+        "careers.positions.water_tech.requirements.2": "پانی کے ٹیسٹ کرنے کے طریقہ کار کا علم",
+        "careers.positions.water_tech.requirements.3": "تفصیلات پر توجہ اور تجزیاتی مہارت",
+        "careers.positions.distribution_manager.title": "ڈسٹریبیوشن مینیجر",
+        "careers.positions.distribution_manager.responsibilities.1": "پانی کی تقسیم کے عمل کی نگرانی کریں",
+        "careers.positions.distribution_manager.responsibilities.2": "ڈیلیوری شیڈول اور راستوں کا انتظام کریں",
+        "careers.positions.distribution_manager.responsibilities.3": "پروڈکشن اور سیلز ٹیموں کے ساتھ کوآرڈینیٹ کریں",
+        "careers.positions.distribution_manager.responsibilities.4": "کارکردگی کے لیے لاجسٹکس کو بہتر بنائیں",
+        "careers.positions.distribution_manager.requirements.1": "بزنس یا لاجسٹکس میں ڈگری ترجیحاً",
+        "careers.positions.distribution_manager.requirements.2": "ڈسٹریبیوشن مینجمنٹ کا تجربہ",
+        "careers.positions.distribution_manager.requirements.3": "مضبوط تنظیمی مہارتیں",
+        "careers.positions.parts_specialist.title": "پارٹس سپیشلسٹ",
+        "careers.positions.parts_specialist.responsibilities.1": "گاہکوں کو صحیح آٹو پارٹس کی شناخت میں مدد کریں",
+        "careers.positions.parts_specialist.responsibilities.2": "انوینٹری اور اسٹاک لیول کو برقرار رکھیں",
+        "careers.positions.parts_specialist.responsibilities.3": "آرڈرز اور شپمنٹس پر کارروائی کریں",
+        "careers.positions.parts_specialist.responsibilities.4": "تکنیکی مصنوعات کی معلومات فراہم کریں",
+        "careers.positions.parts_specialist.requirements.1": "آٹوموٹو سسٹمز کا علم",
+        "careers.positions.parts_specialist.requirements.2": "کسٹمر سروس کا تجربہ",
+        "careers.positions.parts_specialist.requirements.3": "تفصیلات پر توجہ اور مضبوط یادداشت",
+        "careers.positions.inventory_controller.title": "انوینٹری کنٹرولر",
+        "careers.positions.inventory_controller.responsibilities.1": "آٹو پارٹس انوینٹری سسٹم کا انتظام کریں",
+        "careers.positions.inventory_controller.responsibilities.2": "اسٹاک کے باقاعدہ آڈٹ کروائیں",
+        "careers.positions.inventory_controller.responsibilities.3": "سپلائرز اور وینڈرز کے ساتھ کوآرڈینیٹ کریں",
+        "careers.positions.inventory_controller.responsibilities.4": "انوینٹری کی ضروریات کا اندازہ لگائیں",
+        "careers.positions.inventory_controller.requirements.1": "انوینٹری مینجمنٹ کا تجربہ",
+        "careers.positions.inventory_controller.requirements.2": "انوینٹری سافٹ ویئر کی مہارت",
+        "careers.positions.inventory_controller.requirements.3": "مضبوط تجزیاتی مہارتیں",
+        "careers.positions.livestock_manager.title": "مویشی مینیجر",
+        "careers.positions.livestock_manager.responsibilities.1": "روزانہ مویشیوں کے عمل کی نگرانی کریں",
+        "careers.positions.livestock_manager.responsibilities.2": "جانوروں کے صحت کے پروگراموں کو نافذ کریں",
+        "careers.positions.livestock_manager.responsibilities.3": "نسل بندی اور کھلانے کے پروگراموں کا انتظام کریں",
+        "careers.positions.livestock_manager.responsibilities.4": "فارم کے عملے کو تربیت دیں اور نگرانی کریں",
+        "careers.positions.livestock_manager.requirements.1": "اینیمل سائنس یا متعلقہ فیلڈ میں ڈگری",
+        "careers.positions.livestock_manager.requirements.2": "مویشیوں کا وسیع تجربہ",
+        "careers.positions.livestock_manager.requirements.3": "قیادت اور انتظامی مہارتیں",
+        "careers.positions.animal_tech.title": "جانوروں کا صحت ٹیکنیشن",
+        "careers.positions.animal_tech.responsibilities.1": "بنیادی ویٹرنری کیئر فراہم کریں",
+        "careers.positions.animal_tech.responsibilities.2": "ٹیکے اور ادویات دیں",
+        "careers.positions.animal_tech.responsibilities.3": "جانوروں کی صحت اور غذائیت کی نگرانی کریں",
+        "careers.positions.animal_tech.responsibilities.4": "صحت کے ریکارڈ برقرار رکھیں",
+        "careers.positions.animal_tech.requirements.1": "ویٹرنری ٹیکنالوجی میں ڈپلومہ",
+        "careers.positions.animal_tech.requirements.2": "فارم جانوروں کا تجربہ",
+        "careers.positions.animal_tech.requirements.3": "جانوروں کی بہبود کے لیے ہمدردی",
+        "careers.positions.iot_dev.title": "آئی او ٹی ڈویلپر",
+        "careers.positions.iot_dev.responsibilities.1": "اسمارٹ ہومز کے لیے آئی او ٹی حل تیار کریں",
+        "careers.positions.iot_dev.responsibilities.2": "ہارڈ ویئر اور سافٹ ویئر سسٹمز کو انٹیگریٹ کریں",
+        "careers.positions.iot_dev.responsibilities.3": "آٹومیشن ورک فلو بنائیں",
+        "careers.positions.iot_dev.responsibilities.4": "تکنیکی مسائل کا حل کریں",
+        "careers.positions.iot_dev.requirements.1": "کمپیوٹر سائنس یا انجینئرنگ میں ڈگری",
+        "careers.positions.iot_dev.requirements.2": "آئی او ٹی پلیٹ فارمز کا تجربہ",
+        "careers.positions.iot_dev.requirements.3": "پروگرامنگ مہارتیں (پائتھن، سی++، وغیرہ)",
+        "careers.positions.mobile_dev.title": "موبائل ایپ ڈویلپر",
+        "careers.positions.mobile_dev.responsibilities.1": "موبائل ایپلیکیشنز تیار اور برقرار رکھیں",
+        "careers.positions.mobile_dev.responsibilities.2": "UI/UX ڈیزائنرز کے ساتھ تعاون کریں",
+        "careers.positions.mobile_dev.responsibilities.3": "نئی خصوصیات اور بہتریوں کو نافذ کریں",
+        "careers.positions.mobile_dev.responsibilities.4": "ایپ کی کارکردگی اور معیار کو یقینی بنائیں",
+        "careers.positions.mobile_dev.requirements.1": "ری ایکٹ نیٹیو یا فلٹر کا تجربہ",
+        "careers.positions.mobile_dev.requirements.2": "جاوا اسکرپٹ/ٹائپ اسکرپٹ کی مہارت",
+        "careers.positions.mobile_dev.requirements.3": "شائع شدہ ایپس کا پورٹ فولیو",
+        "careers.benefits.title": "ہمارے ساتھ کام کیوں کریں؟",
+        "careers.benefits.training.title": "تربیت اور ترقی",
+        "careers.benefits.training.description": "اپنی مہارتوں کو بڑھانے اور اپنے کیریئر کو آگے بڑھانے کے لیے مسلسل سیکھنے کے مواقع",
+        "careers.benefits.salaries.title": "مسابقتی تنخواہیں",
+        "careers.benefits.salaries.description": "کارکردگی کے بونس کے ساتھ پرکشش معاوضے کے پیکجز",
+        "careers.benefits.health.title": "صحت کے فوائد",
+        "careers.benefits.health.description": "آپ اور آپ کے خاندان کے لیے جامع صحت انشورنس",
+        "careers.benefits.balance.title": "کام اور زندگی کا توازن",
+        "careers.benefits.balance.description": "صحت مند توازن برقرار رکھنے کے لیے لچکدار شیڈول اور معاوضہ چھٹیاں",
+        "team.title": "ہماری ٹیم سے ملیں",
+        "team.description": "ہماری پرعزم ٹیم ہمارے تمام کاروباری شعبوں میں متنوع مہارت کو اکٹھا کرتی ہے تاکہ غیر معمولی خدمات اور اختراعی حل فراہم کیے جا سکیں۔",
+        "team.dost_description": "ہمارے متنوع کاروباری منصوبوں کے بانی اور ویژنری۔ دوست محمد مویشیوں، لاجسٹکس اور معدنی پانی کی خدمات کے شعبوں میں دہائیوں کا تجربہ، حکمت اور قیادت لاتے ہیں۔",
+        "team.ahsan_description": "لیڈ سافٹ ویئر ڈویلپر اور انٹرپرینیور، احسان ہماری کمپنی کے ڈیجیٹل پہلو کی نگرانی کرتے ہیں، ویب ڈویلپمنٹ، آئی ٹی سروسز اور کاروباری آٹومیشن پروجیکٹس کا انتظام کرتے ہیں۔",
+        "team.awais_description": "بزنس ایڈمنسٹریشن کے ماہر جو فی الحال اپنی ڈگری حاصل کرنے کے ساتھ ساتھ کمپنی کے آپریشنز میں فعال طور پر حصہ ڈالتے ہیں۔ وہ روزمرہ کے کاروباری سرگرمیوں، مالی منصوبہ بندی اور اسٹریٹجک ترقی کے انتظام میں مدد کرتے ہیں۔",
+        "contact.title": "ہم سے رابطہ کریں",
+        "contact.description": "استفسارات، فیڈ بیک یا کسی بھی سوال کے لیے ہم سے رابطہ کرنے میں آزاد محسوس کریں۔ ہم آپ سے سننا پسند کریں گے!",
+        "contact.form.name": "آپ کا نام",
+        "contact.form.email": "آپ کا ای میل",
+        "contact.form.phone": "آپ کا فون نمبر",
+        "contact.form.select_department": "محکمہ منتخب کریں",
+        "contact.form.message": "آپ کا پیغام",
+        "contact.form.submit": "پیغام بھیجیں",
+        "contact.form.other": "دیگر استفسار",
+        "footer.copyright": "© 2025 دوست محمد اینڈ کمپنی۔ تمام حقوق محفوظ ہیں۔",
+        "social.facebook": "فیس بک",
+        "social.linkedin": "لنکڈ ان"
+      }
+    };
+
+    // Language Toggle Functionality
+    const languageToggle = document.getElementById('languageToggle');
+    let currentLanguage = localStorage.getItem('language') || 'en';
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      
+      // Update body class for RTL
+      document.body.classList.toggle('urdu', lang === 'ur');
+      
+      // Update all elements with data-i18n attributes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Update all placeholder attributes
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+          el.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+      
+      // Update select options
+      document.querySelectorAll('option[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    // Initialize language
+    setLanguage(currentLanguage);
+
+    // Toggle language on button click
+    languageToggle.addEventListener('click', () => {
+      const newLang = currentLanguage === 'en' ? 'ur' : 'en';
+      setLanguage(newLang);
+    });
+
     // Hero Image Rotator
     const hero = document.querySelector(".hero");
     const images = [
@@ -1319,7 +1666,9 @@
     const contactForm = document.querySelector(".contact-form");
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Thank you for your message! We'll get back to you soon.");
+      alert(currentLanguage === 'en' 
+        ? "Thank you for your message! We'll get back to you soon." 
+        : "آپ کے پیغام کا شکریہ! ہم جلد ہی آپ سے رابطہ کریں گے۔");
       contactForm.reset();
     });
   </script>
