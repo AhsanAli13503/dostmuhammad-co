@@ -8,222 +8,306 @@
       name="description"
       content="Premium smart home automation solutions with investment opportunities. AI, blockchain, and IoT integration for modern Pakistani homes."
     />
+    <meta name="keywords" content="smart home, home automation, AI, blockchain, IoT, Pakistan, investment" />
+    <meta name="author" content="Dost Muhammad & Co." />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --primary-color: #3498db;
-        --secondary-color: #2980b9;
-        --dark-color: #333;
-        --light-color: #f9f9f9;
-        --text-color: #555;
-        --white: #fff;
+        --primary: #3498db;  /* Blue for tech theme */
+        --secondary: #2980b9;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --accent: #f97316;
+        --gray: #64748b;
+        --light-gray: #e2e8f0;
+        --card-bg: #ffffff;
       }
 
       body {
-        font-family: "Segoe UI", Arial, sans-serif;
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
         margin: 0;
         padding: 0;
-        background: var(--light-color);
-        color: var(--text-color);
-        line-height: 1.6;
       }
 
-      .header {
-        background: var(--white);
-        padding: 20px 0;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      body.dark-mode {
+        background: #0f172a;
+        color: #e2e8f0;
+        --card-bg: #1e293b;
+        --light-gray: #334155;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: var(--card-bg);
+        color: var(--dark);
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid var(--primary);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         position: sticky;
         top: 0;
         z-index: 100;
       }
 
-      .header a {
+      body.dark-mode .navbar {
+        background: #1e293b;
+        color: #e2e8f0;
+      }
+
+      .navbar nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .navbar a {
+        position: relative;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        font-weight: 500;
         text-decoration: none;
-        color: var(--dark-color);
-        font-weight: bold;
-        font-size: 28px;
-        letter-spacing: 1.5px;
-        transition: color 0.3s ease;
+        color: inherit;
       }
 
-      .header a:hover {
-        color: var(--primary-color);
+      .navbar a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s ease;
       }
 
+      .navbar a:hover::after {
+        width: 100%;
+      }
+
+      .dark-mode-toggle {
+        background: none;
+        border: none;
+        color: var(--dark);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      body.dark-mode .dark-mode-toggle {
+        color: #e2e8f0;
+      }
+
+      .dark-mode-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      /* Hero Section */
       .hero {
         position: relative;
-        height: 500px;
+        height: 80vh;
+        min-height: 500px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-image: url("images/hero-1.jpg");
       }
 
-      .hero img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        text-align: center;
+        padding: 0 2rem;
+        z-index: 2;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        max-width: 900px;
+        margin: 0 auto;
+        line-height: 1.3;
       }
 
-      .hero-overlay {
+      .hero p {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        margin-bottom: 2rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: var(--white);
-      }
-
-      .hero-text {
-        max-width: 800px;
-        padding: 20px;
-      }
-
-      .hero-text h1 {
-        font-size: 42px;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
-      .hero-text p {
-        font-size: 18px;
-        margin-bottom: 30px;
+        z-index: 1;
       }
 
       .cta-button {
         display: inline-block;
-        padding: 12px 30px;
-        background-color: var(--primary-color);
-        color: var(--white);
+        padding: 0.8rem 2rem;
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        background-size: 200% auto;
+        color: white;
         text-decoration: none;
-        border-radius: 50px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        border: 2px solid var(--primary-color);
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.5s ease;
+        border: none;
+        cursor: pointer;
+        margin: 0.5rem;
       }
 
       .cta-button.outline {
-        background-color: transparent;
-        color: var(--white);
-        margin-left: 15px;
+        background: transparent;
+        border: 2px solid white;
+        color: white;
       }
 
       .cta-button:hover {
-        background-color: transparent;
-        color: var(--white);
-        border-color: var(--white);
+        background-position: right center;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
       .cta-button.outline:hover {
-        background-color: var(--primary-color);
+        background: var(--primary);
+        border-color: var(--primary);
       }
 
+      /* Content Sections */
       .content {
         max-width: 1200px;
-        margin: 50px auto;
-        padding: 0 20px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
       }
 
       .section {
-        background: var(--white);
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        padding: 40px;
-        margin-bottom: 40px;
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 2.5rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--light-gray);
+      }
+
+      body.dark-mode .section {
+        border: 1px solid #334155;
       }
 
       h2 {
-        color: var(--dark-color);
-        font-size: 32px;
-        margin-bottom: 25px;
+        font-size: clamp(2rem, 3vw, 2.5rem);
+        margin-bottom: 1.5rem;
         position: relative;
-        padding-bottom: 10px;
+        padding-bottom: 1rem;
+        color: var(--dark);
       }
 
-      h2:after {
-        content: "";
+      body.dark-mode h2 {
+        color: #e2e8f0;
+      }
+
+      h2::after {
+        content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         width: 80px;
         height: 4px;
-        background: var(--primary-color);
+        background: var(--primary);
+        border-radius: 2px;
       }
 
       h3 {
-        color: var(--dark-color);
-        font-size: 24px;
-        margin-top: 30px;
-        margin-bottom: 15px;
+        font-size: 1.5rem;
+        margin: 2rem 0 1rem;
+        color: var(--dark);
+      }
+
+      body.dark-mode h3 {
+        color: #e2e8f0;
       }
 
       p {
-        font-size: 16px;
-        margin-bottom: 20px;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--gray);
+        margin-bottom: 1.5rem;
       }
 
-      ul {
-        padding-left: 20px;
-        margin-bottom: 20px;
-      }
-
-      li {
-        margin-bottom: 10px;
-        position: relative;
-        padding-left: 25px;
-      }
-
-      li:before {
-        content: "▹";
-        position: absolute;
-        left: 0;
-        color: var(--primary-color);
-      }
-
+      /* Solutions Grid */
       .solutions-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
+        gap: 2rem;
+        margin-top: 2rem;
       }
 
       .solution-card {
-        background: var(--light-color);
-        border-radius: 8px;
-        padding: 30px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        border: 1px solid var(--light-gray);
+      }
+
+      body.dark-mode .solution-card {
+        border: 1px solid #334155;
       }
 
       .solution-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
       }
 
       .solution-card h4 {
-        color: var(--dark-color);
-        font-size: 20px;
-        margin-bottom: 15px;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      body.dark-mode .solution-card h4 {
+        color: #e2e8f0;
       }
 
       .solution-card img {
         width: 100%;
-        height: 180px;
+        height: 200px;
         object-fit: cover;
         border-radius: 8px;
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
       }
 
+      .solution-card:hover img {
+        transform: scale(1.03);
+      }
+
+      /* Client Showcase */
       .client-showcase {
         display: flex;
         align-items: center;
-        gap: 40px;
-        margin-top: 40px;
-        background: var(--light-color);
-        padding: 30px;
-        border-radius: 8px;
+        gap: 2rem;
+        margin-top: 2rem;
+        background: rgba(52, 152, 219, 0.1);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(52, 152, 219, 0.2);
+      }
+
+      body.dark-mode .client-showcase {
+        background: rgba(52, 152, 219, 0.1);
+        border: 1px solid rgba(52, 152, 219, 0.3);
       }
 
       .client-logo {
@@ -241,176 +325,157 @@
         flex: 1;
       }
 
+      /* Tech Stack */
       .tech-stack {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        margin-top: 30px;
+        gap: 1.5rem;
+        margin-top: 2rem;
       }
 
       .tech-item {
         display: flex;
         align-items: center;
-        gap: 15px;
-        padding: 15px;
-        background: var(--light-color);
+        gap: 1rem;
+        padding: 1.5rem;
+        background: var(--card-bg);
         border-radius: 8px;
+        border: 1px solid var(--light-gray);
+        transition: all 0.3s ease;
+      }
+
+      body.dark-mode .tech-item {
+        border: 1px solid #334155;
+      }
+
+      .tech-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
 
       .tech-icon {
-        font-size: 24px;
-        color: var(--primary-color);
-        min-width: 30px;
+        font-size: 2rem;
+        color: var(--primary);
+        min-width: 40px;
         text-align: center;
       }
 
+      /* Investment Benefits */
       .investment-benefits {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-top: 30px;
+        gap: 1.5rem;
+        margin-top: 2rem;
       }
 
       .benefit-item {
         display: flex;
         align-items: flex-start;
-        gap: 15px;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        border: 1px solid var(--light-gray);
+        transition: all 0.3s ease;
+      }
+
+      body.dark-mode .benefit-item {
+        border: 1px solid #334155;
+      }
+
+      .benefit-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
 
       .benefit-icon {
-        font-size: 24px;
-        color: var(--primary-color);
+        font-size: 1.5rem;
+        color: var(--primary);
         min-width: 30px;
       }
 
-      .contact-form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-top: 30px;
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      .form-group.full-width {
-        grid-column: span 2;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: var(--dark-color);
-      }
-
-      input,
-      textarea,
-      select {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-        transition: border-color 0.3s ease;
-      }
-
-      input:focus,
-      textarea:focus,
-      select:focus {
-        border-color: var(--primary-color);
-        outline: none;
-      }
-
-      textarea {
-        min-height: 150px;
-        resize: vertical;
-      }
-
-      .submit-btn {
-        background-color: var(--primary-color);
-        color: var(--white);
-        border: none;
-        padding: 14px 30px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .submit-btn:hover {
-        background-color: var(--secondary-color);
-      }
-
-      .testimonials {
-        margin: 60px 0;
-      }
-
+      /* Testimonials */
       .testimonial-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
+        gap: 2rem;
+        margin-top: 3rem;
       }
 
       .testimonial-card {
-        background: var(--white);
-        border-radius: 8px;
-        padding: 30px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--light-gray);
+      }
+
+      body.dark-mode .testimonial-card {
+        border: 1px solid #334155;
       }
 
       .testimonial-text {
         font-style: italic;
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
         position: relative;
+        color: var(--gray);
       }
 
       .testimonial-text:before {
         content: '"';
-        font-size: 60px;
-        color: var(--primary-color);
+        font-size: 4rem;
+        color: var(--primary);
         opacity: 0.2;
         position: absolute;
-        top: -20px;
-        left: -10px;
+        top: -2rem;
+        left: -1rem;
+        line-height: 1;
       }
 
       .testimonial-author {
         font-weight: bold;
-        color: var(--dark-color);
+        color: var(--dark);
       }
 
-      .faq-section {
-        margin: 60px 0;
+      body.dark-mode .testimonial-author {
+        color: #e2e8f0;
       }
 
+      /* FAQ Section */
       .faq-item {
-        margin-bottom: 20px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 20px;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--light-gray);
+        padding-bottom: 1.5rem;
+      }
+
+      body.dark-mode .faq-item {
+        border-bottom: 1px solid #334155;
       }
 
       .faq-question {
-        font-weight: bold;
-        color: var(--dark-color);
+        font-weight: 600;
+        color: var(--dark);
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 1.1rem;
+      }
+
+      body.dark-mode .faq-question {
+        color: #e2e8f0;
       }
 
       .faq-answer {
-        padding-top: 10px;
+        padding-top: 1rem;
         display: none;
+        color: var(--gray);
       }
 
       .faq-question:after {
         content: "+";
-        font-size: 20px;
-        color: var(--primary-color);
+        font-size: 1.5rem;
+        color: var(--primary);
       }
 
       .faq-item.active .faq-question:after {
@@ -421,95 +486,202 @@
         display: block;
       }
 
+      /* Contact Form */
+      .contact-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      body.dark-mode label {
+        color: #e2e8f0;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s ease;
+        background: var(--card-bg);
+        color: var(--dark);
+      }
+
+      body.dark-mode input,
+      body.dark-mode textarea,
+      body.dark-mode select {
+        border: 2px solid #334155;
+        color: #e2e8f0;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        outline: none;
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        padding: 1rem 2rem;
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        background-size: 200% auto;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.5s ease;
+      }
+
+      .submit-btn:hover {
+        background-position: right center;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Project Link */
+      .project-link {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin-top: 1rem;
+      }
+
+      .project-link:hover {
+        color: var(--secondary);
+        text-decoration: underline;
+      }
+
+      /* Footer */
       .footer {
-        background: var(--dark-color);
-        color: var(--white);
-        padding: 60px 0 30px;
-        text-align: center;
+        background-color: var(--dark);
+        color: #e2e8f0;
+        padding: 4rem 0 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .footer-content {
         max-width: 1200px;
         margin: 0 auto;
+        padding: 0 2rem;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        padding: 0 20px;
-        text-align: left;
+        gap: 3rem;
       }
 
       .footer-column h4 {
-        color: var(--white);
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
         position: relative;
-        padding-bottom: 10px;
+        padding-bottom: 0.8rem;
       }
 
       .footer-column h4:after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 0;
         width: 50px;
-        height: 2px;
-        background: var(--primary-color);
+        height: 3px;
+        background: var(--primary);
       }
 
       .footer-column p,
       .footer-column a {
-        color: #bbb;
-        margin-bottom: 15px;
-        display: block;
-        text-decoration: none;
+        color: #94a3b8;
+        margin-bottom: 1rem;
         transition: color 0.3s ease;
+        text-decoration: none;
+        display: block;
       }
 
       .footer-column a:hover {
-        color: var(--primary-color);
+        color: var(--primary);
       }
 
       .social-links {
         display: flex;
-        gap: 15px;
-        margin-top: 20px;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
       }
 
-      .social-links a {
-        color: var(--white);
-        font-size: 20px;
+      .social-link {
+        color: #94a3b8;
+        font-size: 1.3rem;
         transition: color 0.3s ease;
       }
 
-      .social-links a:hover {
-        color: var(--primary-color);
+      .social-link:hover {
+        color: var(--primary);
       }
 
       .copyright {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #444;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: #94a3b8;
+        font-size: 0.9rem;
       }
 
+      /* Responsive Adjustments */
       @media (max-width: 768px) {
-        .hero-text h1 {
-          font-size: 32px;
+        .hero h1 {
+          font-size: 2.5rem;
         }
-
-        .hero-text p {
-          font-size: 16px;
+        
+        .hero p {
+          font-size: 1rem;
         }
-
-        .contact-form {
-          grid-template-columns: 1fr;
+        
+        .navbar {
+          flex-direction: column;
+          padding: 1rem;
         }
-
-        .form-group.full-width {
-          grid-column: span 1;
+        
+        .navbar nav {
+          margin-top: 1rem;
         }
-
-        .header a {
-          font-size: 24px;
+        
+        .content {
+          padding: 2rem 1rem;
+        }
+        
+        .section {
+          padding: 1.5rem;
+        }
+        
+        h2 {
+          font-size: 2rem;
         }
 
         .client-showcase {
@@ -518,45 +690,43 @@
 
         .client-logo {
           flex: 0 0 auto;
+          margin-bottom: 1.5rem;
         }
-      }
-
-      .project-link {
-        color: var(--primary-color);
-        font-weight: bold;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .project-link:hover {
-        color: var(--secondary-color);
-        text-decoration: underline;
       }
     </style>
   </head>
-  <body>
-    <header class="header">
+  <body class="dark-mode">
+    <!-- Navbar -->
+    <div class="navbar">
       <a href="index">Dost Muhammad & Co.</a>
-    </header>
+      <nav>
+        <a href="index">Home</a>
+        <a href="smarthome">Smart Home</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="darkModeToggle" class="dark-mode-toggle">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
 
+    <!-- Hero Section -->
     <section class="hero">
-      <img src="images/hero-1.jpg" alt="Smart Home Automation" />
-      <div class="hero-overlay">
-        <div class="hero-text">
-          <h1>Smart Home & Technology Solutions</h1>
-          <p>
-            Cutting-edge home automation integrated with AI and blockchain
-            technologies for modern Pakistani homes and businesses
-          </p>
-          <div>
-            <a href="#contact" class="cta-button">Request Consultation</a>
-            <a href="#invest" class="cta-button outline">Investor Info</a>
-          </div>
+      <div class="overlay"></div>
+      <div class="hero-text">
+        <h1>Smart Home & Technology Solutions</h1>
+        <p>
+          Cutting-edge home automation integrated with AI and blockchain
+          technologies for modern Pakistani homes and businesses
+        </p>
+        <div>
+          <a href="#contact" class="cta-button">Request Consultation</a>
+          <a href="#invest" class="cta-button outline">Investor Info</a>
         </div>
       </div>
     </section>
 
     <div class="content">
+      <!-- About Section -->
       <section class="section">
         <h2>Smart Home Automation Services</h2>
         <p>
@@ -572,11 +742,12 @@
         </p>
       </section>
 
+      <!-- Solutions Section -->
       <section class="section">
         <h2>Our Smart Home Solutions</h2>
         <div class="solutions-grid">
           <div class="solution-card">
-            <img src="images/home-automation.jpg" alt="Home Automation" />
+            <img src="images/home-automation.jpg" alt="Home Automation" loading="lazy" />
             <h4>Complete Home Automation</h4>
             <ul>
               <li>Lighting, climate, and appliance control</li>
@@ -587,7 +758,7 @@
           </div>
 
           <div class="solution-card">
-            <img src="images/home-security.jpg" alt="Smart Security" />
+            <img src="images/home-security.jpg" alt="Smart Security" loading="lazy" />
             <h4>Smart Security Systems</h4>
             <ul>
               <li>AI-powered surveillance cameras</li>
@@ -598,7 +769,7 @@
           </div>
 
           <div class="solution-card">
-            <img src="images/tech-integration.jpg" alt="Tech Integration" />
+            <img src="images/tech-integration.jpg" alt="Tech Integration" loading="lazy" />
             <h4>Advanced Tech Integration</h4>
             <ul>
               <li>Blockchain-based access systems</li>
@@ -610,11 +781,12 @@
         </div>
       </section>
 
+      <!-- Client Showcase -->
       <section class="section">
         <h2>Featured Client: Shelozon</h2>
         <div class="client-showcase">
           <div class="client-logo">
-            <img src="images/shelozon-logo.png" alt="Shelozon" />
+            <img src="images/shelozon-logo.png" alt="Shelozon" loading="lazy" />
           </div>
           <div class="client-content">
             <h3>Relocation Management System</h3>
@@ -656,6 +828,7 @@
         </div>
       </section>
 
+      <!-- Tech Stack -->
       <section class="section">
         <h2>Our Technology Expertise</h2>
         <p>
@@ -694,6 +867,7 @@
         </div>
       </section>
 
+      <!-- Investment Section -->
       <section class="section" id="invest">
         <h2>Investment Opportunity</h2>
         <p>
@@ -754,6 +928,7 @@
         </ul>
       </section>
 
+      <!-- Financial Highlights -->
       <section class="section">
         <h2>Financial Highlights</h2>
         <div class="solutions-grid">
@@ -775,6 +950,7 @@
         </div>
       </section>
 
+      <!-- Testimonials -->
       <section class="section testimonials">
         <h2>Client Testimonials</h2>
         <div class="testimonial-grid">
@@ -807,6 +983,7 @@
         </div>
       </section>
 
+      <!-- FAQ Section -->
       <section class="section faq-section">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-item">
@@ -857,6 +1034,7 @@
         </div>
       </section>
 
+      <!-- Contact Form -->
       <section class="section" id="contact">
         <h2>Contact Us</h2>
         <p>
@@ -889,7 +1067,12 @@
           </div>
           <div class="form-group full-width">
             <label for="message">Your Message</label>
-            <textarea id="message" name="message" required></textarea>
+            <textarea 
+              id="message" 
+              name="message" 
+              required
+              placeholder="Please include details about your project or investment interest"
+            ></textarea>
           </div>
           <div class="form-group full-width">
             <button type="submit" class="submit-btn">Send Message</button>
@@ -898,6 +1081,7 @@
       </section>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-column">
@@ -909,31 +1093,34 @@
         </div>
         <div class="footer-column">
           <h4>Our Divisions</h4>
-          <a href="index">Smart Home Solutions</a>
-          <a href="#">Softwareing Tech</a>
+          <a href="index">Home</a>
+          <a href="smarthome">Smart Home</a>
           <a href="autoparts">Auto Parts</a>
           <a href="livestock">Livestock</a>
+          <a href="water">Water Solutions</a>
         </div>
         <div class="footer-column">
           <h4>Contact Info</h4>
           <p>Main Office, Mansehra</p>
-          <p>Phone: +92 333 5082651</p>
-          <p>Email: smart@dostmuhammad.com</p>
+          <p>Phone: +92 313 5807484</p>
+          <p>Email: ahsanali3174@gmail.com</p>
           <p>Business Hours: Mon-Sat 9AM-6PM</p>
         </div>
         <div class="footer-column">
           <h4>Follow Us</h4>
           <div class="social-links">
-            <a
-              href="https://web.facebook.com/freelanceBasedITCompany"
-              target="_blank"
-              >Facebook</a
-            >
-            <a
-              href="https://www.linkedin.com/in/ahsan-ali-softwareing/"
-              target="_blank"
-              >LinkedIn</a
-            >
+            <a href="https://web.facebook.com/freelanceBasedITCompany" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ahsan-ali-softwareing/" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -959,6 +1146,56 @@
             behavior: "smooth",
           });
         });
+      });
+
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        const icon = darkModeToggle.querySelector("i");
+        if (document.body.classList.contains("dark-mode")) {
+          icon.classList.replace("fa-moon", "fa-sun");
+          localStorage.setItem("darkMode", "enabled");
+        } else {
+          icon.classList.replace("fa-sun", "fa-moon");
+          localStorage.setItem("darkMode", "disabled");
+        }
+      });
+
+      // Check for saved dark mode preference
+      if (localStorage.getItem("darkMode") === "disabled") {
+        document.body.classList.remove("dark-mode");
+        darkModeToggle.querySelector("i").classList.replace("fa-sun", "fa-moon");
+      }
+
+      // Form submission
+      const contactForm = document.querySelector(".contact-form");
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Thank you for your message! We'll contact you shortly.");
+        contactForm.reset();
+      });
+
+      // Lazy load images
+      document.addEventListener("DOMContentLoaded", function() {
+        const lazyImages = document.querySelectorAll("img[loading='lazy']");
+        
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src || img.src;
+                img.classList.add("loaded");
+                observer.unobserve(img);
+              }
+            });
+          });
+
+          lazyImages.forEach(img => {
+            imageObserver.observe(img);
+          });
+        }
       });
     </script>
   </body>
